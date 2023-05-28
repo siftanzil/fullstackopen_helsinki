@@ -3,8 +3,10 @@ import React from "react";
 const StatisticLine = ({ text, value }) => {
    return (
       <>
-         {text} {value} {text === "positive" && " %"}
-         <br />
+         <td>{text}</td>
+         <td>
+            {value} {text === "positive" && " %"}
+         </td>
       </>
    );
 };
