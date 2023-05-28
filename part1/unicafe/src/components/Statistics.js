@@ -1,6 +1,6 @@
 import React from "react";
 
-const Stats = ({ good, neutral, bad }) => {
+const Statistics = ({ good, neutral, bad }) => {
    //    console.log("g - " + good + ", n - " + neutral + ", b - " + bad);
    let all = good + neutral + bad;
    //    console.log(all);
@@ -29,4 +29,4 @@ const Stats = ({ good, neutral, bad }) => {
    );
 };
 
-export default Stats;
+export default Statistics;
