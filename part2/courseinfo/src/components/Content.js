@@ -2,7 +2,7 @@ import React from "react";
 import Part from "./Part";
 
 const Content = ({ parts }) => {
-   console.log(parts);
+   // console.log(parts);
    return (
       <>
          {parts.map((part, i) => (

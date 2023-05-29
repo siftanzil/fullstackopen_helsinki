@@ -17,24 +17,8 @@ const App = () => {
             exercises: 14,
          },
          {
-            name: "State of a data",
-            exercises: 13,
-         },
-         {
-            name: "State of a variable",
-            exercises: 19,
-         },
-         {
-            name: "State of a component",
-            exercises: 14,
-         },
-         {
-            name: "State of a data",
-            exercises: 13,
-         },
-         {
-            name: "State of a variable",
-            exercises: 19,
+            name: "Redux",
+            exercises: 11,
          },
       ],
    };

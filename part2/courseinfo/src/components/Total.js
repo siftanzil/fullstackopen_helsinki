@@ -4,8 +4,10 @@ const Total = ({ parts }) => {
    // console.log(parts);
    return (
       <p>
-         Number of exercises{" "}
-         {parts[0].exercises + parts[1].exercises + parts[2].exercises}
+         <b>
+            total of {parts.reduce((sum, part) => (sum += part.exercises), 0)}{" "}
+            exercises
+         </b>
       </p>
    );
 };
