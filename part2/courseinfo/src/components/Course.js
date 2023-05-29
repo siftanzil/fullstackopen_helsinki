@@ -3,7 +3,7 @@ import Header from "./Header";
 import Content from "./Content";
 import Total from "./Total";
 
-const Course = ({ course }) => {
+const Course = (course) => {
    //    console.log(course);
    return (
       <div>
