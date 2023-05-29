@@ -12,9 +12,14 @@ const App = () => {
       "The only way to go fast, is to go well.",
    ];
 
+   const findMostVoted = () => {
+      return Object.keys(votes).reduce((a, b) => (votes[a] > votes[b] ? a : b));
+   };
+
    const [selected, setSelected] = useState(0);
-   const [votes, setVotes] = useState({});
+   const [votes, setVotes] = useState({ 0: 0 });
    const [vote, setVote] = useState(0);
+   const [mostVoted, setMostVoted] = useState(findMostVoted);
 
    const handleClick = () => {
       let max = anecdotes.length;
@@ -23,6 +28,7 @@ const App = () => {
       // console.log(random);
       setSelected(random);
       votes[random] ? setVote(votes[random]) : setVote(0);
+      setMostVoted(findMostVoted);
    };
 
    const handleVote = () => {
@@ -32,19 +38,30 @@ const App = () => {
       // console.log(votes);
       votes[selected] = vote + 1;
       setVotes(votes);
+      setMostVoted(findMostVoted);
       // console.log(vote);
       console.log(votes);
+      console.log("Most Voted = " + findMostVoted());
    };
 
    return (
-      <div>
-         {anecdotes[selected]}
-         <br />
-         has {vote} votes
-         <br />
-         <button onClick={handleVote}>vote</button>
-         <button onClick={handleClick}>next anecdote</button>
-      </div>
+      <>
+         <div>
+            <h1>Anecdote of the day</h1>
+            {anecdotes[selected]}
+            <br />
+            has {vote} votes
+            <br />
+            <button onClick={handleVote}>vote</button>
+            <button onClick={handleClick}>next anecdote</button>
+         </div>
+         <div>
+            <h1>Anecdote with most votes</h1>
+            {anecdotes[mostVoted]}
+            <br />
+            has {votes[mostVoted]} votes
+         </div>
+      </>
    );
 };
 
