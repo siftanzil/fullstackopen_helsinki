@@ -3,9 +3,9 @@ import React from "react";
 const Persons = ({ filteredPersons, handleDelete }) => {
    return (
       <p>
-         {filteredPersons.map((person, i) => {
+         {filteredPersons.map((person) => {
             return (
-               <span key={i}>
+               <span key={person.id}>
                   {person.name} {person.number}{" "}
                   <button onClick={() => handleDelete(person)}>delete</button>
                   <br />

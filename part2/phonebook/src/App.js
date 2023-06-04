@@ -25,9 +25,9 @@ const App = () => {
    const addName = (event) => {
       event.preventDefault();
       let nameObject = { name: newName, number: newNumber };
-      let id = persons.findIndex((person) => person.name === nameObject.name);
-      console.log(id);
-      if (id !== -1) {
+      let present = persons.find((person) => person.name === nameObject.name);
+      console.log(present);
+      if (present) {
          if (
             window.confirm(
                `${newName} is already added to phonebook, replace the old number with a new one?`,
@@ -35,11 +35,11 @@ const App = () => {
          ) {
             // update contact if name exist already
             services
-               .update(id, nameObject)
+               .update(present.id, nameObject)
                .then((response) => {
                   console.log(response);
                   let latest = persons.map((person) =>
-                     person.id !== id ? person : response.data,
+                     person.id !== present.id ? person : response.data,
                   );
                   setPersons(latest);
                   setFilteredPersons(latest);
@@ -50,7 +50,7 @@ const App = () => {
                })
                .catch((error) => {
                   setError(
-                     `${nameObject.name} is already deleted from server.`,
+                     `Information of ${nameObject.name} has already been removed from server.`,
                   );
                   setTimeout(() => {
                      setError(null);
@@ -84,6 +84,10 @@ const App = () => {
                   );
                   setPersons(latest);
                   setFilteredPersons(latest);
+                  setMessage(`Deleted ${clicked.name}`);
+                  setTimeout(() => {
+                     setMessage(null);
+                  }, 5000);
                }
             })
             .catch((error) => {
