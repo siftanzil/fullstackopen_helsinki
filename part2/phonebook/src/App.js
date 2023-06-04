@@ -17,17 +17,37 @@ const App = () => {
       });
    }, []);
 
+   // add new contact
+
    const addName = (event) => {
       event.preventDefault();
       let nameObject = { name: newName, number: newNumber };
-      persons.find((person) => person.name === nameObject.name)
-         ? alert(`${newName} is already added to phonebook`)
-         : services.create(nameObject).then((response) => {
-              //   console.log(response.data);
-              let latest = persons.concat(response.data);
-              setPersons(latest);
-              setFilteredPersons(latest);
-           });
+      let id = persons.findIndex((person) => person.name === nameObject.name);
+      console.log(id);
+      if (id !== -1) {
+         if (
+            window.confirm(
+               `${newName} is already added to phonebook, replace the old number with a new one?`,
+            )
+         ) {
+            // update contact if name exist already
+            services.update(id, nameObject).then((response) => {
+               console.log(response);
+               let latest = persons.map((person) =>
+                  person.id !== id ? person : response.data,
+               );
+               setPersons(latest);
+               setFilteredPersons(latest);
+            });
+         }
+      } else {
+         // create new contact if name doesn't exist
+         services.create(nameObject).then((response) => {
+            let latest = persons.concat(response.data);
+            setPersons(latest);
+            setFilteredPersons(latest);
+         });
+      }
       setNewName("");
       setNewNumber("");
    };
