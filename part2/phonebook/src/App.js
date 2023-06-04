@@ -32,13 +32,20 @@ const App = () => {
       setNewNumber("");
    };
 
-   const handleDelete = (id) => {
-      services.remove(id).then((response) => {
-         let latest = persons.filter((person) => person.id !== id);
-         setPersons(latest);
-         setFilteredPersons(latest);
-      });
+   const handleDelete = (clicked) => {
+      if (window.confirm(`Delete ${clicked.name} ?`)) {
+         services.remove(clicked.id).then((response) => {
+            if (response.status === 200) {
+               let latest = persons.filter(
+                  (person) => person.id !== clicked.id,
+               );
+               setPersons(latest);
+               setFilteredPersons(latest);
+            }
+         });
+      }
    };
+
    const filterPersons = (query) => {
       const filteredPersons = persons.filter((person) =>
          person.name.toLowerCase().includes(query.toLowerCase()),
