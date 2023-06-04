@@ -22,7 +22,14 @@ const App = () => {
       let nameObject = { name: newName, number: newNumber };
       persons.find((person) => person.name === nameObject.name)
          ? alert(`${newName} is already added to phonebook`)
-         : persons.push(nameObject);
+         : axios
+              .post("http://localhost:3001/persons", nameObject)
+              .then((response) => {
+                 //   console.log(response.data);
+                 let latest = persons.concat(response.data);
+                 setPersons(latest);
+                 setFilteredPersons(latest);
+              });
       setNewName("");
       setNewNumber("");
    };
@@ -33,6 +40,7 @@ const App = () => {
       );
       setFilteredPersons(filteredPersons);
    };
+
    return (
       <div>
          <h2>Phonebook</h2>
