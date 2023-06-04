@@ -11,6 +11,7 @@ const App = () => {
    const [newNumber, setNewNumber] = useState("");
    const [filteredPersons, setFilteredPersons] = useState(persons);
    const [message, setMessage] = useState("");
+   const [error, setError] = useState("");
 
    useEffect(() => {
       services.getAll().then((response) => {
@@ -33,18 +34,28 @@ const App = () => {
             )
          ) {
             // update contact if name exist already
-            services.update(id, nameObject).then((response) => {
-               console.log(response);
-               let latest = persons.map((person) =>
-                  person.id !== id ? person : response.data,
-               );
-               setPersons(latest);
-               setFilteredPersons(latest);
-               setMessage(`Updated ${response.data.name}`);
-               setTimeout(() => {
-                  setMessage(null);
-               }, 5000);
-            });
+            services
+               .update(id, nameObject)
+               .then((response) => {
+                  console.log(response);
+                  let latest = persons.map((person) =>
+                     person.id !== id ? person : response.data,
+                  );
+                  setPersons(latest);
+                  setFilteredPersons(latest);
+                  setMessage(`Updated ${response.data.name}`);
+                  setTimeout(() => {
+                     setMessage(null);
+                  }, 5000);
+               })
+               .catch((error) => {
+                  setError(
+                     `${nameObject.name} is already deleted from server.`,
+                  );
+                  setTimeout(() => {
+                     setError(null);
+                  }, 5000);
+               });
          }
       } else {
          // create new contact if name doesn't exist
@@ -64,15 +75,23 @@ const App = () => {
 
    const handleDelete = (clicked) => {
       if (window.confirm(`Delete ${clicked.name} ?`)) {
-         services.remove(clicked.id).then((response) => {
-            if (response.status === 200) {
-               let latest = persons.filter(
-                  (person) => person.id !== clicked.id,
-               );
-               setPersons(latest);
-               setFilteredPersons(latest);
-            }
-         });
+         services
+            .remove(clicked.id)
+            .then((response) => {
+               if (response.status === 200) {
+                  let latest = persons.filter(
+                     (person) => person.id !== clicked.id,
+                  );
+                  setPersons(latest);
+                  setFilteredPersons(latest);
+               }
+            })
+            .catch((error) => {
+               setError(`${clicked.name} is already deleted from server.`);
+               setTimeout(() => {
+                  setError(null);
+               }, 5000);
+            });
       }
    };
 
@@ -87,6 +106,7 @@ const App = () => {
       <div>
          <h2>Phonebook</h2>
          {message && <Notification message={message} />}
+         {error && <Notification error={error} />}
          <Filter filterPersons={filterPersons} />
          <h2>add a new</h2>
          <PersonForm

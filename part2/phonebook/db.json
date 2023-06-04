@@ -1,69 +1,19 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
+      "name": "asdasd",
+      "number": "123123123123",
       "id": 1
     },
     {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
+      "name": "sadasasd",
+      "number": "13213123",
       "id": 2
-    },
-    {
-      "name": "asdasd",
-      "number": "123213123123",
-      "id": 3
-    },
-    {
-      "name": "asdasd",
-      "number": "123123123",
-      "id": 5
     },
     {
       "name": "sadasasd",
       "number": "21213213",
       "id": 7
-    },
-    {
-      "name": "asdads",
-      "number": "1231231231",
-      "id": 8
-    },
-    {
-      "name": "asdsada",
-      "number": "123123",
-      "id": 9
-    },
-    {
-      "name": "sdasdasd",
-      "number": "13213132",
-      "id": 10
-    },
-    {
-      "name": "sadasd",
-      "number": "a",
-      "id": 11
-    },
-    {
-      "name": "asdasd ",
-      "number": "123123123",
-      "id": 12
-    },
-    {
-      "name": "asdsads",
-      "number": "213123",
-      "id": 13
-    },
-    {
-      "name": "asdasdad",
-      "number": "213213213",
-      "id": 14
-    },
-    {
-      "name": "asdasd ",
-      "number": "12312321313",
-      "id": 15
     }
   ]
 }
