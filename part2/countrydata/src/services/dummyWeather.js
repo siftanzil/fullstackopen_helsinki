@@ -1,0 +1,43 @@
+const dummyWeather = {
+   location: {
+      name: "Dhaka",
+      region: "",
+      country: "Bangladesh",
+      lat: 23.72,
+      lon: 90.41,
+      tz_id: "Asia/Dhaka",
+      localtime_epoch: 1686583250,
+      localtime: "2023-06-12 21:20",
+   },
+   current: {
+      last_updated_epoch: 1686582900,
+      last_updated: "2023-06-12 21:15",
+      temp_c: 28,
+      temp_f: 82.4,
+      is_day: 0,
+      condition: {
+         text: "Patchy rain possible",
+         icon: "//cdn.weatherapi.com/weather/64x64/night/176.png",
+         code: 1063,
+      },
+      wind_mph: 12.3,
+      wind_kph: 19.8,
+      wind_degree: 246,
+      wind_dir: "WSW",
+      pressure_mb: 1001,
+      pressure_in: 29.55,
+      precip_mm: 1.4,
+      precip_in: 0.06,
+      humidity: 77,
+      cloud: 83,
+      feelslike_c: 31.9,
+      feelslike_f: 89.4,
+      vis_km: 9,
+      vis_miles: 5,
+      uv: 1,
+      gust_mph: 19.9,
+      gust_kph: 32,
+   },
+};
+
+export default dummyWeather;
