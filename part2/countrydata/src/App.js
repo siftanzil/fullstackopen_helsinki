@@ -36,18 +36,18 @@ const App = () => {
          {searched.length !== 1 &&
             searched.length <= 10 &&
             searched.map((country, key) => {
-               return (
-                  <p key={key}>
-                     {country.name.common + " - " + country.capital}
-                  </p>
-               );
+               return <p key={key}>{country.name.common}</p>;
             })}
          {searched.length === 1 &&
             searched.map((country, key) => {
                return (
                   <div key={key}>
                      <h1>{country.name.common}</h1>
-                     <br />
+                     <p>
+                        capital {country.capital}
+                        <br />
+                        area {country.area}
+                     </p>
                      <h3>languages</h3>
                      <ul>
                         {Object.keys(country.languages).map((key, index) => {
